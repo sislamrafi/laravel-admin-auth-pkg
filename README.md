@@ -51,7 +51,7 @@ This is an example of how to list things you need to use the software and how to
     ```
     ADMIN_ACCEPT_REGISTER=false
     ```
-        This .env variable will define if normal visitor in website can open a id in admin panel.
+    This ``.env`` variable will define if normal visitor in website can open a id in admin panel.
 6.  If you add this package to your existing project, don't forget to clear cache
     ```sh
     php artisan optimize:clear
