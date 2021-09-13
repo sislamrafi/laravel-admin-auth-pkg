@@ -1,0 +1,30 @@
+{
+    "name": "sislamrafi/admin",
+    "description": "Admin package for laravel",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "S Islam Rafi",
+            "email": "sislamrafi333@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sislamrafi\\Admin\\":"src/"
+        }
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Sislamrafi\\Admin\\AdminServiceProvider"
+            ],
+            "aliases":[
+
+            ]
+        }
+    }
+}
