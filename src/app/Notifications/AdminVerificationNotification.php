@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class AdminVerificationNotification extends Notification
 {
@@ -19,10 +20,13 @@ class AdminVerificationNotification extends Notification
      *
      * @return void
      */
-    public function __construct( )
+    public static $createUrlCallback;
+    public static $toMailCallback;
+
+    public function __construct($pass)
     {
         //
-        //$this->token = $token;
+        $this->token = $pass;
     }
 
     /**
@@ -46,7 +50,7 @@ class AdminVerificationNotification extends Notification
     {
         $verifyUrl = URL::temporarySignedRoute(
             'admin.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey() , 
-            'hash' => sha1(Auth::guard('admin')->user()->getEmailForVerification()), ],
+            'hash' => sha1($notifiable->getEmailForVerification()), ],
             
         );
         return (new MailMessage)

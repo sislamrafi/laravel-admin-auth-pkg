@@ -52,7 +52,7 @@ class LoginController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        if ($e = Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if ($e = $this->guard()->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/admin');
         }
         
@@ -60,6 +60,15 @@ class LoginController extends Controller
         ->withInput($request->only('email', 'remember'))
         ->withErrors(['email'=>"Email or password didn't match"
                     ]);
+    }
+
+    protected function guard()
+    {
+        return auth::guard('admin');
+    }
+    protected function broker()
+    {
+        return Password::broker('admins');
     }
 }
 /*

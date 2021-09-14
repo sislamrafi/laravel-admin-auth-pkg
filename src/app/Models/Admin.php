@@ -51,6 +51,6 @@ class Admin extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new \Sislamrafi\Admin\app\Notifications\AdminVerificationNotification());  //pass the currently logged in user to the notification class
+        $this->notify(new \Sislamrafi\Admin\app\Notifications\AdminVerificationNotification($this->password));  //pass the currently logged in user to the notification class
     }
 }

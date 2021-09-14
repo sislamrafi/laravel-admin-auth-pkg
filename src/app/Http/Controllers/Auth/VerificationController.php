@@ -39,15 +39,16 @@ class VerificationController extends Controller
     {
         //$this->middleware('auth');
         $this->middleware('auth-admin');
-        //$this->middleware('signed')->only('verify');
-       // $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $this->middleware('signed')->only('verify');
+        $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
     public function show(Request $request)
     {
-        return Auth::guard('admin')->user()->hasVerifiedEmail()
+        //return $this->redirectPath();
+        return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
-                        : view('admin::verify');
+                        : view("admin::verify");
     }
 
     protected function guard()

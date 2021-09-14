@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 use Sislamrafi\Admin\app\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -50,7 +51,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm() {
         if(config('admin.accept_register')=='true')
-            return view ('auth.register', ['url' => 'admin']);
+            return view ('admin::register', ['url' => 'admin']);
         else 
             return "You are not permitted to create user";
     }
@@ -77,5 +78,14 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+    protected function broker()
+    {
+        return Password::broker('admins');
     }
 }

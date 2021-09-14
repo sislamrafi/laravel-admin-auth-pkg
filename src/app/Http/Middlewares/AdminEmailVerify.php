@@ -21,12 +21,14 @@ class AdminEmailVerify
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
-        if (! $request->user() ||
+        //dd("Hi");
+        if (!$request->user() ||
             ($request->user() instanceof MustVerifyEmail &&
             ! $request->user()->hasVerifiedEmail())) {
+                //dd(URL::route($redirectToRoute ?: 'admin.verification.notice'));
             return $request->expectsJson()
                     ? abort(403, 'Your email address is not verified.')
-                    : Redirect::guest(URL::route($redirectToRoute ?: 'admin.verification.notice'));
+                    : redirect(URL::route($redirectToRoute ?: 'admin.verification.notice'));
         }
 
         return $next($request);
