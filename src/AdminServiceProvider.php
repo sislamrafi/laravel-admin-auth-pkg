@@ -48,7 +48,7 @@ class AdminServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         if (!is_dir(base_path('routes/admin')))return;
-        Route::middleware(['web'])
+        Route::middleware(['web'])  
                 ->prefix('admin')
                 ->name('admin.')
                 ->namespace('Sislamrafi\Admin')
