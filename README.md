@@ -27,15 +27,15 @@ This is an example of how to list things you need to use the software and how to
     ```
     "repositories": [
          {
-             "url": "https://github.com/sislamrafi/laravel-admin-auth-pkg",
-             "type": "git"
+             "url": "https://github.com/sislamrafi/laravel-admin-auth-pkg.git",
+             "type": "vcs"
          }
      ],
     ```
 
 2.  Run Composer Require command
     ```sh
-    composer require sislamrafi/admin
+    composer require sislamrafi/admin:dev-main
     ```
 3.  Publish package
     ```sh
@@ -55,6 +55,10 @@ This is an example of how to list things you need to use the software and how to
 6.  If you add this package to your existing project, don't forget to clear cache
     ```sh
     php artisan optimize:clear
+    ```
+7. To update run,
+    ```sh
+    composer update sislamrafi/admin
     ```
 
 <!-- USAGE EXAMPLES -->
