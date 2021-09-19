@@ -19,6 +19,8 @@ class AdminServiceProvider extends ServiceProvider
 {
     public const HOME = '/admin';
 
+    protected $namespace = 'Sislamrafi\\Admin\\app\\Http\\Controllers';
+
     public function boot()
     {
         $this->co = new cso;
@@ -51,12 +53,12 @@ class AdminServiceProvider extends ServiceProvider
         Route::middleware(['web'])  
                 ->prefix('admin')
                 ->name('admin.')
-                ->namespace('Sislamrafi\Admin')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/admin/web.php'));
         Route::middleware(['api'])
                 ->prefix('admin/api')
                 ->name('admin.api')
-                ->namespace('Sislamrafi\Admin')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/admin/api.php'));
     }
 
